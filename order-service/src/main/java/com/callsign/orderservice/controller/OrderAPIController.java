@@ -70,7 +70,7 @@ public class OrderAPIController {
 
     @GetMapping("/search")
     public @ResponseBody
-    @Operation(summary = "Used to search for order by deliveryStatus, search is use LIKE and not EXACT match. try to search for VIP", security = @SecurityRequirement(name = "bearerAuth"))
+    @Operation(summary = "Used to search for order by deliveryStatus, search is EXACT match. try to search for VIP", security = @SecurityRequirement(name = "bearerAuth"))
     List<OrderDeliveryDto> search(@RequestParam String deliveryStatus) {
         return orderMapper.entitesToDTOs(orderDeliveryService.searchByDeliveryStatus(deliveryStatus));
     }

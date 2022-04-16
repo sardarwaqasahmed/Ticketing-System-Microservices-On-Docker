@@ -52,31 +52,31 @@ public class OrderDeliveryService {
         }
     }
 
-    public OrderDeliveryEntity add(OrderDeliveryEntity property) throws EntityCanNotBeSavedException {
-        OrderDeliveryEntity saveOrderdelivery = orderDeliveryRepository.save(property);
+    public OrderDeliveryEntity add(OrderDeliveryEntity orderDelivery) throws EntityCanNotBeSavedException {
+        OrderDeliveryEntity saveOrderdelivery = orderDeliveryRepository.save(orderDelivery);
         if (saveOrderdelivery == null || saveOrderdelivery.getId() == null) {
-            log.error("OrderDeliveryEntity with id {} can not be saved", property.getId());
+            log.error("OrderDeliveryEntity with id {} can not be saved", orderDelivery.getId());
             throw new EntityCanNotBeSavedException("OrderDeliveryEntity can not be saved.");
         } else {
-            log.info("OrderDeliveryEntity with id {} is saved successfully", property.getId());
+            log.info("OrderDeliveryEntity with id {} is saved successfully", orderDelivery.getId());
             return saveOrderdelivery;
         }
     }
 
-    public OrderDeliveryEntity update(OrderDeliveryEntity property) throws EntityCanNotBeSavedException {
-        OrderDeliveryEntity updatedProperty = orderDeliveryRepository.save(property);
-        if (updatedProperty != null && updatedProperty.getId() != null) {
-            log.info("OrderDeliveryEntity with id {} is updated successfully", property.getId());
-            return updatedProperty;
+    public OrderDeliveryEntity update(OrderDeliveryEntity orderDelivery) throws EntityCanNotBeSavedException {
+        OrderDeliveryEntity updatedTiket = orderDeliveryRepository.save(orderDelivery);
+        if (updatedTiket != null && updatedTiket.getId() != null) {
+            log.info("OrderDeliveryEntity with id {} is updated successfully", orderDelivery.getId());
+            return updatedTiket;
         } else {
-            log.error("OrderDeliveryEntity with id {} can not be updated", property.getId());
+            log.error("OrderDeliveryEntity with id {} can not be updated", orderDelivery.getId());
             throw new EntityCanNotBeSavedException("OrderDeliveryEntity can not be updated.");
         }
     }
 
-    public void delete(OrderDeliveryEntity property) {
-        orderDeliveryRepository.delete(property);
-        log.info("OrderDeliveryEntity Id {} is deleted successfully",property.getId());
+    public void delete(OrderDeliveryEntity orderDelivery) {
+        orderDeliveryRepository.delete(orderDelivery);
+        log.info("OrderDeliveryEntity Id {} is deleted successfully",orderDelivery.getId());
     }
 
     public List<OrderDeliveryEntity> searchByDeliveryStatus(String deliveryStatus) {

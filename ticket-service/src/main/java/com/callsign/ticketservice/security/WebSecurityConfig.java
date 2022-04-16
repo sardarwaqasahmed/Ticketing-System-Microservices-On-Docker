@@ -1,6 +1,6 @@
-package com.callsign.orderservice.security;
+package com.callsign.ticketservice.security;
 
-import com.callsign.orderservice.service.UserService;
+import com.callsign.ticketservice.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

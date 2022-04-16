@@ -1,0 +1,17 @@
+app:
+  username: "admin"
+  password: "admin"
+  role: "USER"
+  # LOGGER LEVEL
+  logging:
+    file:
+      name: "/apps/logs/orderservice.log"
+      max-history:  30
+      max-size: 10MB
+    pattern:
+      console:  "%d{yyyy-MMM-dd HH:mm:ss.SSS} [%thread] %highlight(%-5level) %cyan(%logger{15}) - %msg %n"
+      file: "%d{yyyy-MMM-dd HH:mm:ss} [%thread]  %highlight(%-5level) %boldyellow(%logger{15}) - %msg%"
+    level:
+      com:
+        callsign:
+          demo: INFO

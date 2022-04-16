@@ -1,0 +1,13 @@
+server:
+  port: 1111
+  servlet:
+    contextPath:  /config-server
+spring:
+  profiles:
+    active: native
+  cloud:
+    config:
+      server:
+        native:
+          searchLocations:
+            classpath:config/orderservice

@@ -1,11 +1,12 @@
 package com.callsign.loginservice.util;
 
+import com.callsign.loginservice.config.LoginServiceConfig;
 import io.jsonwebtoken.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.annotation.Value;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import javax.crypto.spec.SecretKeySpec;
@@ -29,8 +30,8 @@ public class JwtUtil implements Serializable {
     private SignatureAlgorithm signatureAlgorithm = SignatureAlgorithm.HS256;
     private final long expirationMillSec = 300000;  // 5 min
 
-    @Value("${jwt.secret}")
-    private String jwtSecret;
+    @Autowired
+    private LoginServiceConfig serviceConfig;
 
     /** <p> This method will generate a token for web service. Server will sign the header and payload using signing key and add token expiry.</p>
      * <p> Server will add claims that belong to the user</p>
@@ -38,7 +39,7 @@ public class JwtUtil implements Serializable {
      */
     public String generateJWTToken(String userName, Long id) {
 
-        byte[] apiKeySecretBytes = DatatypeConverter.parseBase64Binary(jwtSecret);
+        byte[] apiKeySecretBytes = DatatypeConverter.parseBase64Binary(serviceConfig.getJwtSecret());
         Key signingKey = new SecretKeySpec(apiKeySecretBytes, signatureAlgorithm.getJcaName());
 
         Claims claims = Jwts.claims().setSubject(userName).setId(String.valueOf(id));
@@ -60,7 +61,7 @@ public class JwtUtil implements Serializable {
      */
     public boolean validateToken(String token) {
         try {
-            Jwts.parser().setSigningKey(jwtSecret).parseClaimsJws(token);
+            Jwts.parser().setSigningKey(serviceConfig.getJwtSecret()).parseClaimsJws(token);
             return true;
         } catch (SignatureException ex) {
             log.error("Invalid JWT signature - {}", ex.getMessage());
@@ -82,7 +83,7 @@ public class JwtUtil implements Serializable {
      */
     public String getUsername(String token) {
         Claims claims = Jwts.parser()
-                .setSigningKey(jwtSecret)
+                .setSigningKey(serviceConfig.getJwtSecret())
                 .parseClaimsJws(token)
                 .getBody();
 

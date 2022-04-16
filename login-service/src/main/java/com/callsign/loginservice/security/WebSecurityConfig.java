@@ -50,6 +50,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .authorizeRequests()
                 .antMatchers("/v3/api-docs",
                         "/h2-console/**",
+                        "/loginsrv/api/auth/**",
                         "/api/auth",
                         "/v3/api-docs/**",
                         "/configuration/ui",

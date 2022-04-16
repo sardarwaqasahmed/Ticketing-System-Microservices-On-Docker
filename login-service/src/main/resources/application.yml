@@ -1,11 +1,11 @@
 server:
-  port: 8080
+  port: 8081
   servlet:
-    context-path: /ordersrv
+    context-path: /loginsrv
 
 spring:
   application:
-    name: ordersrvapi
+    name: loginsrvapi
   h2:
     console:
       enabled: true
@@ -14,7 +14,7 @@ spring:
     hibernate:
       ddl-auto: create-drop
   datasource:
-    url: jdbc:h2:mem:orderdb
+    url: jdbc:h2:mem:logindb
     username: root
     password: root
     driverClassName: org.h2.Driver

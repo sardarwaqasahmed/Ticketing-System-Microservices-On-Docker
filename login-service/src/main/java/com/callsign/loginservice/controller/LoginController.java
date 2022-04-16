@@ -1,32 +1,40 @@
-package com.callsign.orderservice.controller;
+package com.callsign.loginservice.controller;
 
-import com.callsign.orderservice.entity.UserEntity;
-import com.callsign.orderservice.exception.UserUnauthorizedException;
-import com.callsign.orderservice.service.UserService;
-import com.callsign.orderservice.util.JwtUtil;
+import com.callsign.loginservice.entity.UserEntity;
+import com.callsign.loginservice.exception.UserUnauthorizedException;
+import com.callsign.loginservice.service.UserService;
+import com.callsign.loginservice.util.JwtUtil;
 import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import lombok.AllArgsConstructor;
-import org.springframework.security.authentication.AuthenticationManager;
-import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.web.bind.annotation.*;
 
 import javax.persistence.EntityNotFoundException;
 import javax.servlet.ServletException;
 import javax.validation.Valid;
+import java.util.List;
 
 /**
  Author: waqas ahmed
  Date  : APR 14, 2022
  **/
 @RestController
-@RequestMapping("/v1/login")
+@RequestMapping("/api/auth")
 @AllArgsConstructor
 @CrossOrigin
 public class LoginController {
 
     private final UserService userService;
-    private AuthenticationManager authenticationManager;
     private JwtUtil jwtUtil;
+
+    @GetMapping
+    @Operation(summary = "Used to list all available Users", security = @SecurityRequirement(name = "bearerAuth"))
+    public @ResponseBody
+    List<UserDetails> all() {
+        return userService.findAll();
+    }
+
 
     /** <p>This api will authenticate the username and password. </p>
      *  <p>Upon successful authentication it will make a call to AuthServer for generation of JWT</p>
@@ -44,8 +52,7 @@ public class LoginController {
 
         if (user != null) {
             if (user.getPassword().equals(password)) {
-                authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(userName, password));
-                return jwtUtil.generateJWTToken(userName);
+                return jwtUtil.generateJWTToken(userName, user.getId());
             } else {
                 throw new UserUnauthorizedException("Wrong UserName or Password");
             }

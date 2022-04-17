@@ -1,0 +1,43 @@
+# LOGGER LEVEL
+logging:
+  file:
+    name: "/apps/logs/autoticketschedulerservice.log"
+    max-history:  30
+    max-size: 10MB
+  pattern:
+    console:  "%d{yyyy-MMM-dd HH:mm:ss.SSS} [%thread] %highlight(%-5level) %cyan(%logger{15}) - %msg %n"
+    file: "%d{yyyy-MMM-dd HH:mm:ss} [%thread]  %highlight(%-5level) %boldyellow(%logger{15}) - %msg%"
+  level:
+    com:
+      callsign:
+        demo: DEBUG
+
+  # JWT
+jwt:
+  secret: waqasahmed
+  # FEIGN Client
+feign:
+  client:
+    config:
+      default:
+        connectTimeout: 30000
+        readTimeout: 30000
+        loggerLevel: FULL
+ticket:
+  srv:
+    api:
+      baseUrl:  http://localhost:8082/ticketsrv/api/v1
+      username: ticketsrv
+      password: ticketsrv
+order:
+  srv:
+    api:
+      baseUrl:  http://localhost:8080/ordersrv/api/v1
+      username: ordersrv
+      password: ordersrv
+login:
+  srv:
+    api:
+      baseUrl:  http://localhost:8081/loginsrv/api
+
+environment:  "default"

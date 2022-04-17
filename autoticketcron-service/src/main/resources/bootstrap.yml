@@ -1,0 +1,8 @@
+spring:
+  application:
+    name: autoticketcronapi
+  profiles:
+    active: default
+  cloud:
+    config:
+      uri:  http://localhost:1111/config-server

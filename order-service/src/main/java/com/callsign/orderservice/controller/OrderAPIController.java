@@ -46,7 +46,7 @@ public class OrderAPIController {
 
     @PostMapping
     @ResponseBody
-    @Operation(summary = "Used to add new Order", security = @SecurityRequirement(name = "bearerAuth"))
+    @Operation(summary = "Client Side Will Used This API To Create New Order. Client can be Mobile,Web, or API. Initial Order Status Will Be Received.", security = @SecurityRequirement(name = "bearerAuth"))
     public ResponseEntity<OrderDeliveryDto> add(@Valid @RequestBody OrderDeliveryDto order) throws EntityCanNotBeSavedException {
         orderDeliveryService.add(orderMapper.dtoToEntity(order));
         return new ResponseEntity<OrderDeliveryDto>(HttpStatus.CREATED);
@@ -54,7 +54,7 @@ public class OrderAPIController {
 
     @PutMapping
     @ResponseBody
-    @Operation(summary = "Used to update an existing Order", security = @SecurityRequirement(name = "bearerAuth"))
+    @Operation(summary = "API Client Will Use This API For Changing Order Status, Initial Call Will Change Status From 'Received' To 'Preparation'", security = @SecurityRequirement(name = "bearerAuth"))
     public ResponseEntity<OrderDeliveryDto> update(@Valid @RequestBody OrderDeliveryDto order) throws EntityCanNotBeSavedException {
         orderDeliveryService.update(orderMapper.dtoToEntity(order));
         return new ResponseEntity<OrderDeliveryDto>(HttpStatus.OK);
@@ -68,10 +68,10 @@ public class OrderAPIController {
         return new ResponseEntity<OrderDeliveryDto>(HttpStatus.OK);
     }
 
-    @GetMapping("/search")
+    @GetMapping("/search/{deliveryStatus}")
     public @ResponseBody
-    @Operation(summary = "Used to search for order by deliveryStatus, search is EXACT match. try to search for VIP", security = @SecurityRequirement(name = "bearerAuth"))
-    List<OrderDeliveryDto> search(@RequestParam String deliveryStatus) {
+    @Operation(summary = "Used to search for order by deliveryStatus, search is EXACT match. try to search for deliveryStatus Received", security = @SecurityRequirement(name = "bearerAuth"))
+    List<OrderDeliveryDto> search(@PathVariable("deliveryStatus") String deliveryStatus) {
         return orderMapper.entitesToDTOs(orderDeliveryService.searchByDeliveryStatus(deliveryStatus));
     }
     

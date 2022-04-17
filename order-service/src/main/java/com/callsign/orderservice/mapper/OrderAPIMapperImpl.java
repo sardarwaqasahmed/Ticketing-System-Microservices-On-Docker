@@ -26,6 +26,7 @@ public class OrderAPIMapperImpl implements OrderAPIMapper {
         orderDeliveryDto.id( entity.getId() );
         orderDeliveryDto.customerType( entity.getCustomerType() );
         orderDeliveryDto.deliveryStatus( entity.getDeliveryStatus() );
+        orderDeliveryDto.orderCreationTime(entity.getOrderCreationTime());
         orderDeliveryDto.expectedDeliveryTime( entity.getExpectedDeliveryTime() );
         orderDeliveryDto.distanceFromDestination( entity.getDistanceFromDestination() );
         orderDeliveryDto.foodPreparationMeanTime( entity.getFoodPreparationMeanTime() );
@@ -45,6 +46,7 @@ public class OrderAPIMapperImpl implements OrderAPIMapper {
         orderDeliveryEntity.id( dto.getId() );
         orderDeliveryEntity.customerType( dto.getCustomerType() );
         orderDeliveryEntity.deliveryStatus( dto.getDeliveryStatus() );
+        orderDeliveryEntity.orderCreationTime(dto.getOrderCreationTime());
         orderDeliveryEntity.expectedDeliveryTime( dto.getExpectedDeliveryTime() );
         orderDeliveryEntity.distanceFromDestination( dto.getDistanceFromDestination() );
         orderDeliveryEntity.foodPreparationMeanTime( dto.getFoodPreparationMeanTime() );

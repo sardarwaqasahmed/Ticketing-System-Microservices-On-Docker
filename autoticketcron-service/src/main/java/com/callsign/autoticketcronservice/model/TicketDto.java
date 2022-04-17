@@ -1,4 +1,4 @@
-package com.callsign.orderservice.model;
+package com.callsign.autoticketcronservice.model;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import lombok.*;
@@ -17,35 +17,35 @@ import java.sql.Timestamp;
 @NoArgsConstructor
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @ToString
-public class OrderDeliveryDto {
+public class TicketDto {
 
     private Long id;
 
     @NotNull
     @NotBlank
-    private String customerType;
+    private Long customerId;
 
     @NotNull
     @NotBlank
-    private String deliveryStatus;
+    private Long deliveryId;
 
     @NotNull
     @NotBlank
-    private Timestamp expectedDeliveryTime;
+    private Timestamp ticketCreationTime;
 
     @NotNull
     @NotBlank
-    private Timestamp orderCreationTime;
+    private String ticketDesc;
 
     @NotNull
     @NotBlank
-    private int distanceFromDestination;
+    private String status;
 
     @NotNull
     @NotBlank
-    private int foodPreparationMeanTime;
+    private String priority;
 
     @NotNull
     @NotBlank
-    private Timestamp timeToReachDestination;
+    private Timestamp ticketCloseTime;
 }

@@ -42,11 +42,15 @@ public class OrderDeliveryEntity {
     @NotNull(message = "delivery_status can not be null!")
     private String deliveryStatus;
 
+    @Column(name = "order_creation_time")
+    @NotNull(message = "order_creation_time can not be null!")
+    private Timestamp orderCreationTime;
+
     @Column(name = "expected_delivery_time",
             nullable = false)
     @NotNull(message = "expected_delivery_time can not be null!")
     private Timestamp expectedDeliveryTime;
-    
+
     @Column(name = "distance_from_destination",
             nullable = false)
     @NotNull(message = "distance_from_destination can not be null!")

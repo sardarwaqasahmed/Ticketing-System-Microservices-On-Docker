@@ -74,7 +74,14 @@ public class TicketAPIController {
     List<TicketDto> search(@RequestParam String priority) {
         return ticketMapper.entitesToDTOs(ticketDeliveryService.searchByPriority(priority));
     }
-    
+
+    @GetMapping("/search/{status}")
+    public @ResponseBody
+    @Operation(summary = "Used to search for ticket by status, search is EXACT match. try to search for High", security = @SecurityRequirement(name = "bearerAuth"))
+    List<TicketDto> searchByStatus(@PathVariable("status") String status) {
+        return ticketMapper.entitesToDTOs(ticketDeliveryService.searchByStatus(status));
+    }
+
     @ExceptionHandler(EntityNotFoundException.class)
     @ResponseStatus(HttpStatus.NOT_FOUND)
     @ResponseBody

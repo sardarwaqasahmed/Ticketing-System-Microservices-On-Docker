@@ -84,4 +84,10 @@ public class TicketService {
         log.info("Number of tickets that match {}  is {}",priority,tickets.size());
         return tickets;
     }
+
+    public List<TicketEntity> searchByStatus(String status) {
+        List<TicketEntity> tickets = ticketRepository.findByStatusIgnoreCase(status);
+        log.info("Number of tickets that match {}  is {}",status,tickets.size());
+        return tickets;
+    }
 }

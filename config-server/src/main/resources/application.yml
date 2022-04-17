@@ -10,4 +10,4 @@ spring:
       server:
         native:
           searchLocations:
-            classpath:config/orderservice,classpath:config/loginservice,classpath:config/ticketservice
+            classpath:config/orderservice,classpath:config/loginservice,classpath:config/ticketservice,classpath:config/autoticketschedulerservice,

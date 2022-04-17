@@ -1,4 +1,4 @@
-package com.callsign.orderservice.model;
+package com.callsign.autoticketcronservice.model;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import lombok.*;

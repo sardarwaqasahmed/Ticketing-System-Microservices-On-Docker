@@ -2,6 +2,7 @@ package com.callsign.orderservice.service;
 
 import com.callsign.orderservice.entity.OrderDeliveryEntity;
 import com.callsign.orderservice.exception.EntityCanNotBeSavedException;
+import com.callsign.orderservice.model.OrderDeliveryStatusEnum;
 import com.callsign.orderservice.repository.OrderDeliveryRepository;
 import com.google.common.collect.Lists;
 import lombok.AllArgsConstructor;
@@ -9,6 +10,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
 import javax.persistence.EntityNotFoundException;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -80,8 +82,16 @@ public class OrderDeliveryService {
     }
 
     public List<OrderDeliveryEntity> searchByDeliveryStatus(String deliveryStatus) {
-        List<OrderDeliveryEntity> ordersDelivery = orderDeliveryRepository.findByDeliveryStatusIgnoreCase(deliveryStatus);
-        log.info("Number of orders delivery that match {}  is {}",deliveryStatus,ordersDelivery.size());
-        return ordersDelivery;
+        List<OrderDeliveryEntity> ordersDeliveryList = orderDeliveryRepository.findByDeliveryStatusIgnoreCase(deliveryStatus);
+        log.info("Number of orders delivery that match {}  is {}",deliveryStatus,ordersDeliveryList.size());
+        return ordersDeliveryList;
+    }
+
+    public List<OrderDeliveryEntity> findOrdersNotDelivered() {
+        List<String> orderDeliveryStatus = new ArrayList<>();
+        orderDeliveryStatus.add(OrderDeliveryStatusEnum.DELIVERED.getName());
+        List<OrderDeliveryEntity> ordersDeliveryList = orderDeliveryRepository.findByDeliveryStatusNotIn(orderDeliveryStatus);
+        log.info("Number of orders delivery that is not Delivered are {}", ordersDeliveryList.size());
+        return ordersDeliveryList;
     }
 }

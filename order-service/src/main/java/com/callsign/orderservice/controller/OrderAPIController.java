@@ -74,7 +74,14 @@ public class OrderAPIController {
     List<OrderDeliveryDto> search(@PathVariable("deliveryStatus") String deliveryStatus) {
         return orderMapper.entitesToDTOs(orderDeliveryService.searchByDeliveryStatus(deliveryStatus));
     }
-    
+
+    @GetMapping("/search")
+    public @ResponseBody
+    @Operation(summary = "Used to search for order who is not Delivered yet.", security = @SecurityRequirement(name = "bearerAuth"))
+    List<OrderDeliveryDto> findOrdersNotDelivered() {
+        return orderMapper.entitesToDTOs(orderDeliveryService.findOrdersNotDelivered());
+    }
+
     @ExceptionHandler(EntityNotFoundException.class)
     @ResponseStatus(HttpStatus.NOT_FOUND)
     @ResponseBody

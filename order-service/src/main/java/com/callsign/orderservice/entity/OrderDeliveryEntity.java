@@ -37,6 +37,12 @@ public class OrderDeliveryEntity {
     @NotNull(message = "customer_type can not be null!")
     private String customerType;
 
+    @Column(name = "order_priority",
+            nullable = false)
+    @NotNull(message = "order_priority as per customer type!")
+    @Min(value = 1, message = "order_priority should be positive value.")
+    private int orderPriority;
+
     @Column(name = "delivery_status",
             nullable = false)
     @NotNull(message = "delivery_status can not be null!")
@@ -47,7 +53,7 @@ public class OrderDeliveryEntity {
     private Timestamp orderCreationTime;
 
     @Column(name = "expected_delivery_time",
-            nullable = false)
+            nullable = true)
     @NotNull(message = "expected_delivery_time can not be null!")
     private Timestamp expectedDeliveryTime;
 
@@ -57,14 +63,12 @@ public class OrderDeliveryEntity {
     @Min(value = 5, message = "distance_from_destination should be positive value.")
     private int distanceFromDestination;
 
-    
     @Column(name = "food_preparation_mean_time",
             nullable = false)
-    private int foodPreparationMeanTime;
+    private Long foodPreparationMeanTime;
 
     @Column(name = "time_to_reach_destination",
-            nullable = false)
-    @NotNull(message = "time_to_reach_destination can not be null!")
+            nullable = true)
     private Timestamp timeToReachDestination;
 
 }

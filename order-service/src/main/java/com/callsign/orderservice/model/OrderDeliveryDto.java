@@ -27,6 +27,10 @@ public class OrderDeliveryDto {
 
     @NotNull
     @NotBlank
+    private int orderPriority;
+
+    @NotNull
+    @NotBlank
     private String deliveryStatus;
 
     @NotNull
@@ -43,7 +47,7 @@ public class OrderDeliveryDto {
 
     @NotNull
     @NotBlank
-    private int foodPreparationMeanTime;
+    private Long foodPreparationMeanTime;
 
     @NotNull
     @NotBlank

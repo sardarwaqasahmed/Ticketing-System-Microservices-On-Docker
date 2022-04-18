@@ -27,10 +27,12 @@ public class OrderDeliveryDto {
 
     @NotNull
     @NotBlank
-    private String deliveryStatus;
+    private int orderPriority;
 
     @NotNull
     @NotBlank
+    private String deliveryStatus;
+
     private Timestamp expectedDeliveryTime;
 
     @NotNull
@@ -43,9 +45,7 @@ public class OrderDeliveryDto {
 
     @NotNull
     @NotBlank
-    private int foodPreparationMeanTime;
+    private Long foodPreparationMeanTime;
 
-    @NotNull
-    @NotBlank
     private Timestamp timeToReachDestination;
 }

@@ -22,7 +22,12 @@ public interface OrderDeliveryFeignClient {
     List<OrderDeliveryDto> getAllOrders();
 
     @RequestMapping(method = RequestMethod.GET, value = "/search/{deliveryStatus}")
-    List<OrderDeliveryDto>  searchTicketByDeliveryStatus(@PathVariable("deliveryStatus") String deliveryStatus);
+    List<OrderDeliveryDto>  search(@PathVariable("deliveryStatus") String deliveryStatus);
+
+    @RequestMapping(method = RequestMethod.GET, value = "/search")
+    List<OrderDeliveryDto>  findOrdersNotDelivered();
+
+
 
     @RequestMapping(method = RequestMethod.PUT)
     ResponseEntity<OrderDeliveryDto> update(@RequestBody OrderDeliveryDto order);

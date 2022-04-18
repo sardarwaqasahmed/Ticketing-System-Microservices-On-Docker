@@ -82,6 +82,13 @@ public class TicketAPIController {
         return ticketMapper.entitesToDTOs(ticketDeliveryService.searchByStatus(status));
     }
 
+    @GetMapping("/findByDeliveryId")
+    public @ResponseBody
+    @Operation(summary = "Used to search for ticket by findByDeliveryId, search is EXACT match.", security = @SecurityRequirement(name = "bearerAuth"))
+    List<TicketDto> findByDeliveryId(@RequestParam Long deliveryId) {
+        return ticketMapper.entitesToDTOs(ticketDeliveryService.findByDeliveryId(deliveryId));
+    }
+
     @ExceptionHandler(EntityNotFoundException.class)
     @ResponseStatus(HttpStatus.NOT_FOUND)
     @ResponseBody

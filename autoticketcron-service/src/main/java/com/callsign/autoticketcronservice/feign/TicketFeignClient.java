@@ -3,10 +3,10 @@ package com.callsign.autoticketcronservice.feign;
 import com.callsign.autoticketcronservice.config.TicketFeignClientConfig;
 import com.callsign.autoticketcronservice.model.TicketDto;
 import org.springframework.cloud.openfeign.FeignClient;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 
 /**
@@ -21,4 +21,10 @@ public interface TicketFeignClient {
 
     @RequestMapping(method = RequestMethod.GET, value = "/search/${status}")
     List<TicketDto>  searchTicketByStatus(@PathVariable("status") String status);
+
+    @RequestMapping(method = RequestMethod.GET, value = "/findByDeliveryId")
+    List<TicketDto> findByDeliveryId(@RequestParam Long deliveryId);
+
+    @RequestMapping(method = RequestMethod.POST, value = "/")
+    ResponseEntity<TicketDto> add(@Valid @RequestBody TicketDto ticket);
 }

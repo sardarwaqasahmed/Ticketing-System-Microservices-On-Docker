@@ -1,10 +1,10 @@
-# RealEsate Api (Waqas Ahmed)
+# OrderServoce Api (Waqas Ahmed)
 
-Its an API for real-estate that contains following EndPoints:
-- login
-- CRUD for property 
-- search 
-- approved
+Its an API for managing OrderDelivery. Api contains following EndPoints:
+
+- CRUD for OrderDelivery 
+- /api/v1/search 
+- /api/v1/search/{deliveryStatus}
 
 # Technologies And Tools Used:
 
@@ -21,7 +21,7 @@ Its an API for real-estate that contains following EndPoints:
 
 - On APIs startup, H2 DB will execute *data.sql* scripts for initial data insertion.
   
-- Default User is inserted as speedhome / speedhome which will be used in Login Service.
+- Default Orders are created with minimal data.
 
 - For running as mvn project user following command
 
@@ -30,17 +30,15 @@ Its an API for real-estate that contains following EndPoints:
 - For running on docker , you have to map the port of 8080 as this is the api port.
   
 - Swagger UI for API documentation is accessible from : 
-http://localhost:8080/realestate/swagger-ui.html
+http://localhost:8080/ordersrv/swagger-ui.html
   
-- For using any API service JWT token is required. First need to hit /v1/login service to get the JWT token, then use this token as an 
-  Authorization header in any other request to any end point in the API, other wise you will get 
-  unauthorized error.
+- For using any API service JWT token is required. First need to hit /v1/login service and pass ordersrv as username and password to get the JWT token, then use this token as an Authorization header in any end point of the API, other wise you will get  unauthorized error.
   
 # Create Docker Image
 
 - Go to the root folder of project and issue the following command.
 
-- docker build . -t realestate-service
+- docker build . -t order-service
 
 - this will generate the docker image by reading Dockerfile
 
@@ -48,4 +46,4 @@ http://localhost:8080/realestate/swagger-ui.html
   
 - Run below command in order to run image as docker container
 
-- docker run -d -p 8080:8080 --name realestateapi realestate-service
+- docker run -d -p 8080:8080 --name order-serviceapi order-service

@@ -12,4 +12,5 @@ import java.util.List;
 public interface OrderDeliveryRepository extends CrudRepository<OrderDeliveryEntity, Long> {
 
     List<OrderDeliveryEntity> findByDeliveryStatusIgnoreCase(String deliveryStatus);
+    List<OrderDeliveryEntity> findByDeliveryStatusNotIn(List<String> deliveryStatus);
 }

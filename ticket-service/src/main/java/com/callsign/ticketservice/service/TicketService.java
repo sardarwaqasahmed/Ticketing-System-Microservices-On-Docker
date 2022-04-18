@@ -9,8 +9,10 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
 import javax.persistence.EntityNotFoundException;
+import java.util.Comparator;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 /**
  Author: waqas ahmed
@@ -88,6 +90,16 @@ public class TicketService {
     public List<TicketEntity> searchByStatus(String status) {
         List<TicketEntity> tickets = ticketRepository.findByStatusIgnoreCase(status);
         log.info("Number of tickets that match {}  is {}",status,tickets.size());
-        return tickets;
+        return tickets.stream()
+                .sorted(Comparator.comparing(TicketEntity::getPriority))
+                .collect(Collectors.toList());
+    }
+
+    public List<TicketEntity> findByDeliveryId(Long deliveryId) {
+        List<TicketEntity> tickets = ticketRepository.findByDeliveryId(deliveryId);
+        log.info("Number of tickets that match DeliveryId --> {}  is {}",deliveryId,tickets.size());
+        return tickets.stream()
+                .sorted(Comparator.comparing(TicketEntity::getPriority))
+                .collect(Collectors.toList());
     }
 }

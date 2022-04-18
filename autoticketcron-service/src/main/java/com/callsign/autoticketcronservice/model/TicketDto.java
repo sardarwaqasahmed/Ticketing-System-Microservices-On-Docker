@@ -45,7 +45,5 @@ public class TicketDto {
     @NotBlank
     private String priority;
 
-    @NotNull
-    @NotBlank
     private Timestamp ticketCloseTime;
 }

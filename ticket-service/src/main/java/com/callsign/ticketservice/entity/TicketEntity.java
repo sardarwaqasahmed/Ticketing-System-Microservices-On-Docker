@@ -62,8 +62,7 @@ public class TicketEntity {
     private String priority;
 
     @Column(name = "ticket_close_time",
-            nullable = false)
-    @NotNull(message = "ticket_close_time can not be null!")
+            nullable = true)
     private Timestamp ticketCloseTime;
 
 }

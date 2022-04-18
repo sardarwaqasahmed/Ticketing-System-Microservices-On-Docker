@@ -13,4 +13,5 @@ public interface TicketRepository extends CrudRepository<TicketEntity, Long> {
 
     List<TicketEntity> findByPriorityIgnoreCase(String priority);
     List<TicketEntity> findByStatusIgnoreCase(String status);
+    List<TicketEntity> findByDeliveryId(Long deliveryId);
 }

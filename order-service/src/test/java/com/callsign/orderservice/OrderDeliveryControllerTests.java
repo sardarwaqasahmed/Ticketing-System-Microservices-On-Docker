@@ -94,7 +94,7 @@ public class OrderDeliveryControllerTests {
                 .expectedDeliveryTime(Timestamp.from(Instant.now()))
                 .timeToReachDestination(Timestamp.from(Instant.now()))
                 .distanceFromDestination(5)
-                .foodPreparationMeanTime(45)
+                .foodPreparationMeanTime(45l)
                 .build();
 
         ObjectMapper mapper = new ObjectMapper();
@@ -118,7 +118,7 @@ public class OrderDeliveryControllerTests {
                 .expectedDeliveryTime(Timestamp.from(Instant.now()))
                 .timeToReachDestination(Timestamp.from(Instant.now()))
                 .distanceFromDestination(5)
-                .foodPreparationMeanTime(45)
+                .foodPreparationMeanTime(45l)
                 .build();
 
         ObjectMapper mapper = new ObjectMapper();

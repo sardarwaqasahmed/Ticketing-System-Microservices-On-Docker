@@ -1,10 +1,9 @@
-# RealEsate Api (Waqas Ahmed)
+# Login Service Api (Waqas Ahmed)
 
-Its an API for real-estate that contains following EndPoints:
-- login
-- CRUD for property 
-- search 
-- approved
+Its an API for authentication the services. It has following Endpoints:
+
+- /api/auth GET call to list all registered users
+- /api/auth POST call get the JWT token after entering username and password
 
 # Technologies And Tools Used:
 
@@ -21,18 +20,18 @@ Its an API for real-estate that contains following EndPoints:
 
 - On APIs startup, H2 DB will execute *data.sql* scripts for initial data insertion.
   
-- Default User is inserted as speedhome / speedhome which will be used in Login Service.
+- Default User is inserted as ordersrv / ordersrv and ticketsrv / ticketsrv which will be used in Login Service.
 
 - For running as mvn project user following command
 
 - mvn clean install test
   
-- For running on docker , you have to map the port of 8080 as this is the api port.
+- For running on docker , you have to map the port of 8081 as this is the api port.
   
 - Swagger UI for API documentation is accessible from : 
-http://localhost:8080/realestate/swagger-ui.html
+http://localhost:8081/loginsrv/swagger-ui.html
   
-- For using any API service JWT token is required. First need to hit /v1/login service to get the JWT token, then use this token as an 
+- For using any API service JWT token is required. First need to hit /api/auth service to get the JWT token, then use this token as an 
   Authorization header in any other request to any end point in the API, other wise you will get 
   unauthorized error.
   
@@ -40,7 +39,7 @@ http://localhost:8080/realestate/swagger-ui.html
 
 - Go to the root folder of project and issue the following command.
 
-- docker build . -t realestate-service
+- docker build . -t login-service
 
 - this will generate the docker image by reading Dockerfile
 
@@ -48,4 +47,4 @@ http://localhost:8080/realestate/swagger-ui.html
   
 - Run below command in order to run image as docker container
 
-- docker run -d -p 8080:8080 --name realestateapi realestate-service
+- docker run -d -p 8081:8081 --name loginserviceapi login-service

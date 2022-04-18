@@ -45,6 +45,8 @@ http://localhost:8080/ordersrv/swagger-ui.html
 
 - this will generate the docker image by reading Dockerfile
 
+- For individually creating docker image repeat the above command for each individual service
+
 # Run Image As Container
   
 - Run below command in order to run image as docker container

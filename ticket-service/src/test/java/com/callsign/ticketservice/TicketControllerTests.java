@@ -36,7 +36,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @SpringBootTest
 @RunWith(SpringRunner.class)
 @AutoConfigureMockMvc
-public class TicketControllerTests {
+class TicketControllerTests {
 
     @Autowired
     private MockMvc mvc;
@@ -68,12 +68,12 @@ public class TicketControllerTests {
 
     @Test
     public void testGetTicket() throws Exception {
-        mvc.perform(get("/api/v1/1")
+        mvc.perform(get("/api/v1/3")
                 .header("Authorization", token)
                 .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
-                .andExpect(jsonPath("$.customer_id", is(notNullValue())))
-                .andExpect(jsonPath("$.ticket_desc", is(notNullValue())))
+                .andExpect(jsonPath("$.customerId", is(notNullValue())))
+                .andExpect(jsonPath("$.ticketDesc", is(notNullValue())))
                 .andExpect(jsonPath("$.priority", is(notNullValue())));
     }
 

@@ -1,8 +1,10 @@
 FROM openjdk:8-jdk-alpine
-ENV SPRING_OUTPUT_ANSI_ENABLED=ALWAYS \
-    WAIT_TIME=0 \
-    JAVA_OPTS=""
-VOLUME /ticket-service
+RUN apk add --no-cache --upgrade bash
 ARG JAR_FILE=target/*.jar
-COPY ${JAR_FILE} /ticket-service/ticket.jar
-ENTRYPOINT ["java","-jar","/ticket-service/ticket.jar"]
+
+RUN mkdir -p /usr/local/ticket-service/
+
+ADD ${JAR_FILE} /usr/local/ticket-service/
+ADD docker/run.sh run.sh
+RUN chmod +x run.sh
+CMD ./run.sh

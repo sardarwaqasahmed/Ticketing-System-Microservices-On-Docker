@@ -1,9 +1,10 @@
 FROM openjdk:8-jdk-alpine
-ENV SPRING_OUTPUT_ANSI_ENABLED=ALWAYS \
-    WAIT_TIME=0 \
-    JAVA_OPTS=""
-VOLUME /login-service
+RUN apk add --no-cache --upgrade bash
 ARG JAR_FILE=target/*.jar
-COPY ${JAR_FILE} /login-service/login.jar
-ENTRYPOINT ["java","-jar","/login-service/login.jar"]
-EXPOSE 9091
+
+RUN mkdir -p /usr/local/login-service/
+
+ADD ${JAR_FILE} /usr/local/login-service/
+ADD docker/run.sh run.sh
+RUN chmod +x run.sh
+CMD ./run.sh

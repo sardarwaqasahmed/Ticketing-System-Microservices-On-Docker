@@ -1,0 +1,75 @@
+version: "2"
+services: 
+  orderservice: 
+    image: "sardarwaqasahmed/orderservice:latest"
+    container_name: orderservice
+    volumes: 
+      - "/app/logs/orderservice:/app/orderservice"
+    ports: 
+      - "8080:8080"
+    environment: 
+      PROFILE: dev
+      CONFIG_CLOUD_SERVER_PORT: 1111
+      CONFIG_CLOUD_SERVER_URI: "http://configservice:1111/config-server"
+    depends_on:
+      - configservice
+    command: "/run.sh"      
+    restart: always
+    
+  ticketservice: 
+    image: "sardarwaqasahmed/ticketservice:latest"
+    container_name: ticketservice
+    volumes: 
+      - "/app/logs/ticketservice:/app/ticketservice"
+    ports: 
+      - "8082:8082"
+    environment: 
+      PROFILE: dev
+      CONFIG_CLOUD_SERVER_PORT: 1111
+      CONFIG_CLOUD_SERVER_URI: "http://configservice:1111/config-server"
+    depends_on:
+      - configservice
+    command: "/run.sh"      
+    restart: always
+    
+  loginservice: 
+    image: "sardarwaqasahmed/login-service:latest"
+    container_name: loginservice
+    volumes: 
+      - "/app/logs/loginservice:/app/loginservice"
+    ports: 
+      - "8081:8081"
+    environment: 
+      PROFILE: dev
+      CONFIG_CLOUD_SERVER_PORT: 1111
+      CONFIG_CLOUD_SERVER_URI: "http://configservice:1111/config-server"
+    depends_on:
+      - configservice
+    command: "/run.sh"      
+    restart: always 
+    
+  autoticketcronjob: 
+    image: "sardarwaqasahmed/autoticketcronjob:latest"
+    container_name: autoticketcronjob
+    volumes: 
+      - "/app/logs/autoticketcronjob:/app/autoticketcronjob"
+    ports: 
+      - "8083:8083"
+    environment: 
+      PROFILE: dev
+      CONFIG_CLOUD_SERVER_PORT: 1111
+      CONFIG_CLOUD_SERVER_URI: "http://configservice:1111/config-server"
+    depends_on:
+      - configservice
+    command: "/run.sh"      
+    restart: always
+    
+  configservice: 
+    container_name: configservice
+    environment:
+        PROFILE: local
+    image: "sardarwaqasahmed/config-server:latest"
+    ports: 
+      - "1111:1111"
+    volumes: 
+      - "/app/logs/configservice:/app/configservice"      

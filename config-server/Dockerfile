@@ -1,8 +1,8 @@
 FROM openjdk:8-jdk-alpine
-ENV SPRING_OUTPUT_ANSI_ENABLED=ALWAYS \
-    WAIT_TIME=0 \
-    JAVA_OPTS=""
+RUN apk add --no-cache --upgrade bash
 ARG JAR_FILE=target/*.jar
-COPY ${JAR_FILE} /config-server/configserver.jar
-ENTRYPOINT ["java","-jar","/config-server/configserver.jar"]
-EXPOSE 1111
+RUN mkdir -p /usr/local/config-server
+ADD ${JAR_FILE} /usr/local/config-server
+ADD docker/run.sh run.sh
+RUN chmod +x run.sh
+CMD ./run.sh

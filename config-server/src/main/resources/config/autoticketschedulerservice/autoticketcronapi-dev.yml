@@ -26,18 +26,18 @@ feign:
 ticket:
   srv:
     api:
-      baseUrl:  http://localhost:8082/ticketsrv/api/v1
+      baseUrl:  http://ticketservice:8082/ticketsrv/api/v1
       username: ticketsrv
       password: ticketsrv
 order:
   srv:
     api:
-      baseUrl:  http://localhost:8080/ordersrv/api/v1
+      baseUrl:  http://orderservice:8080/ordersrv/api/v1
       username: ordersrv
       password: ordersrv
 login:
   srv:
     api:
-      baseUrl:  http://localhost:8081/loginsrv/api
+      baseUrl:  http://loginservice:8081/loginsrv/api
 
 environment:  "dev"

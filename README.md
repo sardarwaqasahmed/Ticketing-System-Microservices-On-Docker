@@ -37,7 +37,7 @@ http://localhost:8080/ordersrv/swagger-ui.html
   Authorization header in any other request to any end point in the API, other wise you will get 
   unauthorized error.
   
-# Create Docker Image
+# Create Docker Image One By One
 
 - Go to the root folder of project and issue the following command. For example for config-server
 
@@ -47,8 +47,14 @@ http://localhost:8080/ordersrv/swagger-ui.html
 
 - For individually creating docker image repeat the above command for each individual service
 
-# Run Image As Container
+# Run Image As Container One By One
   
 - Run below command in order to run image as docker container
 
 - docker run -d -p 1111:1111 --name configserver config-server
+
+
+# Use docker-compose tool for running all the container once
+
+- Run below command in order to run all docker images once. All images will be pulled from docker trusted registry and run as container.
+- docker-compose up -d

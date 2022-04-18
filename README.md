@@ -24,7 +24,7 @@ This system will used to improve the customer experience by automatically raisin
   
 - Default User is inserted as ordersrv / ordersrv which will be used in Login Service for getting the JWT token.
 
-- For running as mvn project user following command
+- For running as mvn project use following command
 
 - mvn clean install test
   

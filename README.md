@@ -28,10 +28,10 @@ This system will used to improve the customer experience by automatically raisin
 
 - mvn clean install test
   
-- For running on docker , you have to map the port of 8080 as this is the api port.
+- For running on docker , you have to map the port of 8080 as this is the order-service api port.
   
 - Swagger UI for API documentation is accessible from : 
-http://localhost:8080/realestate/swagger-ui.html
+http://localhost:8080/ordersrv/swagger-ui.html
   
 - For using any API service JWT token is required. First need to hit /loginsrv/api/auth service to get the JWT token, then use this token as an 
   Authorization header in any other request to any end point in the API, other wise you will get 

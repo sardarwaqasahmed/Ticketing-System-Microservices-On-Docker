@@ -58,3 +58,25 @@ http://localhost:8080/ordersrv/swagger-ui.html
 
 - Run below command in order to run all docker images once. All images will be pulled from docker trusted registry and run as container.
 - docker-compose up -d
+
+
+# All Microserivces Docker Image Are Uploaded On DockerHub
+![DockerHub-Registry](https://user-images.githubusercontent.com/9270627/163886879-5a451a99-2aa8-4b23-a680-dfc096f7493b.png)
+
+
+# After Successfull Run You Can View Docker Container As Following:
+![Micro-Services](https://user-images.githubusercontent.com/9270627/163887052-b26d2252-45a2-48bb-a3c7-cf4f6fa7780b.png)
+
+# For Testing [Login-Service] Using Swagger UI
+![Login-API](https://user-images.githubusercontent.com/9270627/163887440-1baebf74-01f9-45a9-911e-ce8307824a5e.png)
+
+
+# For Testing [Order-Service] Using Swagger UI
+![OrderAPI](https://user-images.githubusercontent.com/9270627/163887261-adad5f0e-8c8a-49cb-af68-9e9c35b295d3.png)
+
+# For Testing [Ticket-Service] Using Swagger UI
+![TicketAPI](https://user-images.githubusercontent.com/9270627/163887312-0c0b60b1-de90-468c-84c2-05c058ea3996.png)
+
+
+
+
